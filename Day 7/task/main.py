@@ -104,11 +104,10 @@ while not lives == 0:
         print(f"*************************************You have {lives}/6 lives left******************************")
     else:
         output += "_"
-        lives -= 1
+        lives += 1
         print(f"You guessed {guess}. Thats not in the word. You lose a life")
         print(output)
         print(stages[lives])
-        
         print(f"*************************************You have {lives}/6 lives left******************************")
 
     # TODO-2: - If guess is not a letter in the chosen_word, Then reduce 'lives' by 1.
