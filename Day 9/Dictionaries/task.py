@@ -19,7 +19,7 @@ for key in student_scores:
         student_scores[key] = "Acceptable"
     elif student_scores[key] <= 70:
         student_scores[key] = "Fail"
-student_grades = student_grades | student_scores
+student_grades = student_grades | student_scores  # merging the values of student_scores[key] with student grades(current contents)
 print(f"student_grades: {student_grades}")
 
 """ - my instructor code
