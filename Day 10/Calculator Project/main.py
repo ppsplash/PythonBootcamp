@@ -42,12 +42,14 @@ def calculator():
     n1 = int(input("Whats the first number: "))
     print("+\n-\n*\n/\n")
     output = repeated_calculation(n1)
-    repeat = input(f"Type 'y' to continue calculating with {output}, or type 'n' to start a new calculation: ")
-    if repeat == 'y':
-        repeated_calculation(output)
-    else:
-        print("\n" * 20)
-        calculator()
+    option = True
+    while (option):
+        repeat = input(f"Type 'y' to continue calculating with {output}, or type 'n' to start a new calculation: ")
+        if repeat == 'y':
+            output = repeated_calculation(output)
+        else:
+            print("\n" * 20)
+            calculator()
 
 
 calculator()
