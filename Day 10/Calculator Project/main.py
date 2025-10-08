@@ -4,8 +4,7 @@ print(logo)
 
 
 def add(n1, n2):
-    output = n1 + n2
-    print(output)
+    return n1 + n2
 
 
 def multiply(n1, n2):
@@ -20,18 +19,30 @@ def subtract(n1, n2):
     return n1 - n2
 
 
-n1 = input("Whats the first number")
-print("+\n-\n*\n/\n")
-operation = input("Pick an operation")
-n2 = input("Whats the next number")
-if operation == '+':
-    add(n1, n2)
-if operation == '-':
-    n3 = subtract(n1, n2)
-    print(n3)
-if operation == '*':
-    n3 = multiply(n1, n2)
-    print(n3)
-if operation == '/':
-    n3 = division(n1, n2)
-    print(n3)
+def calculator():
+    n1 = int(input("Whats the first number: "))
+    print("+\n-\n*\n/\n")
+    choice = True
+    while (choice):
+        operation = input("Pick an operation ")
+        n2 = int(input("Whats the next number: "))
+        if operation == '+':
+            n3 = add(n1, n2)
+            print(n3)
+        elif operation == '-':
+            n3 = subtract(n1, n2)
+            print(n3)
+        elif operation == '*':
+            n3 = multiply(n1, n2)
+            print(n3)
+        elif operation == '/':
+            n3 = division(n1, n2)
+            print(n3)
+        print(f"{n1}{operation}{n2} = {n3}")
+        repeat = input(f"Type 'y' to continue calculating with {n3}, or type 'n' to start a new calculation: ")
+        n1 = n3
+        if repeat == 'n':
+            print("\n" * 20)
+
+
+calculator()
