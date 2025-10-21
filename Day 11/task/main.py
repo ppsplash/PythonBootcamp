@@ -6,11 +6,15 @@ c = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def user_card():
     global card
-    card = random.sample([11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10], 2)
+    my_card = random.sample([11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10], 2)
     print(f"Your cards: {card}, current score: {sum(card)}")
-    if sum(card) > 21:
+    if sum(my_card) > 21 and 11 in card:
+        card.remove['11']
+        card.append['1']
         print(f"Your final hand: {card}, final score: {sum(card)}")
-        print(f"Computer#s final hand: {comp_card}, final score. {comp_card}")
+    elif sum(my_card) > 21:
+        print(f"Your final hand: {card}, final score: {sum(card)}")
+        print(f"Computer#s final hand: {compcard}, final score. {compcard}")
         print("You went over. You lose")
 
 
@@ -20,25 +24,29 @@ def adding_cards():
         card.append(random.choice(c))
         print(f"Your cards: {card}, current score: {sum(card)}")
     else:
-        exit()
+        while next == 'n' and sum(compcard) < 17:
+            compcard.append(random.choice(c))
+    print(f"Your final hand: {card}, final score: {sum(card)}")
+    print(f"Computer's final hand: {compcard}, final score. {compcard}")
+    print("Opponent went over. You win :)")
 
 
 def not_adding_cards():
     print(f"Your final hand: {card}, final score: {sum(card)}")
-    print(f"Computer#s final hand: {comp_card}, final score. {comp_card}")
+    print(f"Computer#s final hand: {compcard}, final score. {compcard}")
     print("You went over. You lose")
 
 
 def computer_card():
-    global comp_card
-    comp_card = random.choice(c)
-    print(f"Computer's first card: {comp_card}")
+    global compcard
+    compcard = random.choice(c)
+    print(f"Computer's first card: {compcard}")
 
 
 def adding_comp_card():
-    if sum(comp_card) < 17:
-        comp_card.append(random.choice(c))
-        print(f"Computer's final hand: {card}, final score: {sum(comp_card)}")
+    if sum(compcard) < 17:
+        compcard.append(random.choice(c))
+        print(f"Computer's final hand: {compcard}, final score: {sum(compcard)}")
         print("Opponent went over. You win :)")
 
 
