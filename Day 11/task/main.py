@@ -5,49 +5,40 @@ c = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 
 def user_card():
-    global card
+    global my_card
     my_card = random.sample([11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10], 2)
-    print(f"Your cards: {card}, current score: {sum(card)}")
-    if sum(my_card) > 21 and 11 in card:
-        card.remove['11']
-        card.append['1']
-        print(f"Your final hand: {card}, final score: {sum(card)}")
-    elif sum(my_card) > 21:
-        print(f"Your final hand: {card}, final score: {sum(card)}")
-        print(f"Computer#s final hand: {compcard}, final score. {compcard}")
-        print("You went over. You lose")
+    print(f"Your cards: {my_card}, current score: {sum(my_card)}")
 
 
 def adding_cards():
     next = input("Type 'y' to get an another card, type 'n' to pass: ").lower()
-    if next == 'y':
-        card.append(random.choice(c))
-        print(f"Your cards: {card}, current score: {sum(card)}")
-    else:
-        while next == 'n' and sum(compcard) < 17:
-            compcard.append(random.choice(c))
-    print(f"Your final hand: {card}, final score: {sum(card)}")
-    print(f"Computer's final hand: {compcard}, final score. {compcard}")
-    print("Opponent went over. You win :)")
+    while next == 'y':
+        my_card.append(random.choice(c))
+        print(f"Your cards: {my_card}, current score: {sum(my_card)}")
+        next = input("Type 'y' to get an another card, type 'n' to pass: ").lower()
+    while next == 'n' and sum(comp_card) < 17:
+        comp_card.append(random.choice(c))
+        print(f"Your final hand: {my_card}, final score: {sum(my_card)}")
+        print(f"Computer's final hand: {comp_card}, final score. {comp_card}")
 
 
 def not_adding_cards():
-    print(f"Your final hand: {card}, final score: {sum(card)}")
-    print(f"Computer#s final hand: {compcard}, final score. {compcard}")
+    print(f"Your final hand: {my_card}, final score: {sum(my_card)}")
+    print(f"Computer's final hand: {comp_card}, final score. {comp_card}")
     print("You went over. You lose")
 
 
 def computer_card():
-    global compcard
-    compcard = random.choice(c)
-    print(f"Computer's first card: {compcard}")
+    global comp_card
+    comp_card = random.choice(c)
+    print(f"Computer's first card: {comp_card}")
 
 
 def adding_comp_card():
-    if sum(compcard) < 17:
-        compcard.append(random.choice(c))
-        print(f"Computer's final hand: {compcard}, final score: {sum(compcard)}")
-        print("Opponent went over. You win :)")
+    if sum(my_card) == 21 and my_card == [10, 11]:
+        print(f"Your final hand: {my_card}, final score: 0 ")
+        print(f"Computer's final hand: {comp_card}, final score. {comp_card}")
+        print("Win with a Blackjack")
 
 
 start = input("Do you want to play a game of Blackjack? Type 'y' or 'n' ").lower()
@@ -55,9 +46,9 @@ if start == 'y':
     print(logo)
     user_card()
     computer_card()
-    while sum(card) < 21:
+    while sum(my_card) < 21:
         adding_cards()
-    if sum(card) > 21:
+    if sum(my_card) > 21:
         not_adding_cards()
-    if sum(card) == 21:
+    if sum(my_card) == 21:
         adding_comp_card()
