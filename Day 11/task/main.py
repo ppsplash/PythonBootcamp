@@ -36,12 +36,17 @@ def adding_computer_cards(my_card, comp_card):
     print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
     if sum(comp_card) > 21:
         print("Opponent went over. You win:)")
-    elif sum(comp_card) <= 21 and sum(comp_card) > total:
+    elif sum(comp_card) <= 21 and sum(comp_card) > sum(my_card):
         print("Opponent win!!!!. You lose")
-    elif sum(comp_card) <= 21 and sum(comp_card) == total:
+    elif sum(comp_card) <= 21 and sum(comp_card) == sum(my_card):
         print("Draw")
-    elif sum(comp_card) <= 21 and total > sum(comp_card):
+    elif sum(comp_card) <= 21 and sum(my_card) > sum(comp_card):
         print("You win!!")
+    elif sum(my_card) > 21 and 11 in my_card:
+        my_card.remove(11)
+        my_card.append(1)
+        print(f"Your cards: {my_card}, current score: {sum(my_card)}")
+        print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
 
 
 def validation(total):
