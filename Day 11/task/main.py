@@ -23,10 +23,25 @@ def adding_cards(my_card, comp_card):
     my_card.append(random.choice(c))
     print(f"Your cards: {my_card}, current score: {sum(my_card)}")
     print(f"Computer's first card: {comp_card}")
+    total = sum(my_card)
     if sum(my_card) > 21 and 11 not in my_card:
         print("You went over. You lose :(")
+        return my_card
+    if total == 21 and 11 in my_card:
+        print(f"Your final hand: {my_card} , final score : {total}")
+        print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
+        print("Win with a Blackjack:)")
         exit()
-    return total
+    if total >= 21 and 11 in my_card:
+        my_card.remove(11)
+        my_card.append(1)
+        total = sum(my_card)
+        print(f"Your cards: {my_card}, current score: {total}")
+        print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
+    if total < 21:
+        return total
+    else:
+        quit()
 
 
 def adding_computer_cards(my_card, comp_card):
@@ -34,31 +49,35 @@ def adding_computer_cards(my_card, comp_card):
         comp_card.append(random.choice(c))
     print(f"Your final hand: {my_card} , final score : {sum(my_card)}")
     print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
-    if sum(comp_card) > 21:
-        print("Opponent went over. You win:)")
-    elif sum(comp_card) <= 21 and sum(comp_card) > sum(my_card):
-        print("Opponent win!!!!. You lose")
-    elif sum(comp_card) <= 21 and sum(comp_card) == sum(my_card):
-        print("Draw")
-    elif sum(comp_card) <= 21 and sum(my_card) > sum(comp_card):
-        print("You win!!")
-    elif sum(my_card) > 21 and 11 in my_card:
+    if sum(my_card) > 21 and 11 in my_card:
         my_card.remove(11)
         my_card.append(1)
         print(f"Your cards: {my_card}, current score: {sum(my_card)}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
+    if sum(comp_card) > 21:
+        print("Opponent went over. You win:)")
+    if sum(comp_card) == 21 and 11 in comp_card:
+        print(f"Your final hand: {my_card} , final score : {total}")
+        print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
+        print("Lose with a Blackjack:)")
+    if sum(comp_card) <= 21 and sum(comp_card) > sum(my_card):
+        print("Opponent win!!!!. You lose")
+    if sum(comp_card) <= 21 and sum(comp_card) == sum(my_card):
+        print("Draw")
+    if sum(comp_card) <= 21 and sum(my_card) > sum(comp_card):
+        print("You win!!")
+    exit()
 
 
-def validation(total):
+def start():
+    print(logo)
+    my_card = user_card()
+    comp_card = computer_card()
+    total = sum(my_card)
     if total == 21 and 11 in my_card:
         print(f"Your final hand: {my_card} , final score : {total}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
         print("Win with a Blackjack:)")
-        exit()
-    if total == 21 and 11 in comp_card:
-        print(f"Your final hand: {my_card} , final score : {total}")
-        print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
-        print("Lose with a Blackjack:)")
         exit()
     if total > 21 and 11 in my_card:
         my_card.remove(11)
@@ -67,23 +86,13 @@ def validation(total):
         print(f"Your cards: {my_card}, current score: {total}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
 
-
-def start():
-    print(logo)
-    my_card = user_card()
-    comp_card = computer_card()
-    total = sum(my_card)
-    validation(total)
     repeat = input(f"Type 'y' to get another card, type 'n' to pass: ").lower()
+
     while repeat == 'y':
         adding_cards(my_card, comp_card)
-        total = sum(my_card)
-        validation(total)
         repeat = input(f"Type 'y' to get another card, type 'n' to pass: ").lower()
     while repeat == 'n':
         adding_computer_cards(my_card, comp_card)
-        total = sum(my_card)
-        validation(total)
         exit()
 
 
