@@ -26,19 +26,19 @@ def adding_cards(my_card, comp_card):
     total = sum(my_card)
     if sum(my_card) > 21 and 11 not in my_card:
         print("You went over. You lose :(")
-        return my_card
-    if total == 21 and 11 in my_card:
+        quit()
+    elif total == 21 and 11 in my_card:
         print(f"Your final hand: {my_card} , final score : {total}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
         print("Win with a Blackjack:)")
         exit()
-    if total >= 21 and 11 in my_card:
+    elif total >= 21 and 11 in my_card:
         my_card.remove(11)
         my_card.append(1)
         total = sum(my_card)
         print(f"Your cards: {my_card}, current score: {total}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
-    if total < 21:
+    elif total <= 21:
         return total
     else:
         quit()
@@ -54,17 +54,17 @@ def adding_computer_cards(my_card, comp_card):
         my_card.append(1)
         print(f"Your cards: {my_card}, current score: {sum(my_card)}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
-    if sum(comp_card) > 21:
+    elif sum(comp_card) > 21:
         print("Opponent went over. You win:)")
-    if sum(comp_card) == 21 and 11 in comp_card:
-        print(f"Your final hand: {my_card} , final score : {total}")
+    elif sum(comp_card) == 21 and 11 in comp_card:
+        print(f"Your final hand: {my_card} , final score : {sum(my_card)}")
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
         print("Lose with a Blackjack:)")
-    if sum(comp_card) <= 21 and sum(comp_card) > sum(my_card):
+    elif sum(comp_card) <= 21 and sum(comp_card) > sum(my_card):
         print("Opponent win!!!!. You lose")
-    if sum(comp_card) <= 21 and sum(comp_card) == sum(my_card):
+    elif sum(comp_card) <= 21 and sum(comp_card) == sum(my_card):
         print("Draw")
-    if sum(comp_card) <= 21 and sum(my_card) > sum(comp_card):
+    elif sum(comp_card) <= 21 and sum(my_card) > sum(comp_card):
         print("You win!!")
     exit()
 
@@ -79,7 +79,7 @@ def start():
         print(f"Computer's final hand: {comp_card} , final score : {sum(comp_card)}")
         print("Win with a Blackjack:)")
         exit()
-    if total > 21 and 11 in my_card:
+    elif total > 21 and 11 in my_card:
         my_card.remove(11)
         my_card.append(1)
         total = sum(my_card)
